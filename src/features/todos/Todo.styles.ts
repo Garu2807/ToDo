@@ -41,19 +41,20 @@ export const InputContainer = styled.div`
     margin-right: 10px;
     width: 80%; /* Делаем поле ввода шире */
   }
-  button {
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 4px;
-    background-color: #61dafb; /* Синий цвет кнопки */
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    &:hover {
-      background-color: #21a1f1; /* Темно-синий цвет при наведении */
-      color: #fff; /* Изменяем цвет текста при наведении */
-    }
+`;
+
+export const AddTodoBtn = styled.button`
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #61dafb; /* Синий цвет кнопки */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  &:hover {
+    background-color: #21a1f1; /* Темно-синий цвет при наведении */
+    color: #fff; /* Изменяем цвет текста при наведении */
   }
 `;
 
@@ -69,19 +70,19 @@ export const Footer = styled.div`
   font-size: 0.9rem;
   color: #888;
   font-weight: 700;
+`;
 
-  button {
-    background: none;
-    border: none;
-    font-size: 0.9rem;
-    color: #61dafb; /* Blue link color */
-    cursor: pointer;
-    padding: 5px;
-    transition: color 0.2s ease-in-out;
+export const RemoveCompletedBtn = styled.button`
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  color: #61dafb; /* Blue link color */
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.2s ease-in-out;
 
-    &:hover {
-      color: blue; /* Darker blue on hover */
-    }
+  &:hover {
+    color: blue; /* Darker blue on hover */
   }
 `;
 
@@ -123,7 +124,7 @@ export const Item = styled.div<{ $completed: boolean }>`
     cursor: pointer;
     appearance: none;
     border: 2px solid grey;
-    border-radius: 50%; 
+    border-radius: 50%;
     position: relative;
     outline: none;
     transition: border-color 0.3s, background-color 0.3s;
@@ -142,7 +143,7 @@ export const Item = styled.div<{ $completed: boolean }>`
       border: solid #13ff18;
       border-width: 0 2px 2px 0;
       transform: translate(-50%, -50%) rotate(45deg);
-      transform-origin: center; 
+      transform-origin: center;
     }
   }
 

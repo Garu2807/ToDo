@@ -15,6 +15,7 @@ import {
   Footer,
   Counter,
   FilterButton,
+  AddTodoBtn,
 } from './Todo.styles';
 import { AddTodo } from './types/Todo';
 
@@ -28,7 +29,7 @@ function TodoList() {
 
   const handleAddTodo = (e: React.FormEvent) => {
     e.preventDefault();
-    if (title.trim() === '') return; // Проверка на пустое значение
+    // if (title.trim() === '') return; // Проверка на пустое значение
     const newTodo: AddTodo = {
       title: title,
       status: false,
@@ -67,7 +68,7 @@ function TodoList() {
           placeholder="Что нужно сделать?"
           onKeyDown={handleKeyDown}
         />
-        <button onClick={handleAddTodo}>Добавить</button>
+        <AddTodoBtn onClick={handleAddTodo}>Добавить</AddTodoBtn>
       </InputContainer>
       <List>
         {filteredTodos.map((todo) => (
