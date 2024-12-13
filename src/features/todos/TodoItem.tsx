@@ -29,7 +29,7 @@ function TodoItem({ todo }: TodoPropsType) {
   };
 
   return (
-    <Item $competed={todo.status}>
+    <Item $completed={todo.status}>
       <input
         type="checkbox"
         checked={todo.status}

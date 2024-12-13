@@ -28,7 +28,7 @@ function TodoList() {
 
   const handleAddTodo = (e: React.FormEvent) => {
     e.preventDefault();
-    if (title.trim() === '') return;
+    if (title.trim() === '') return; // Проверка на пустое значение
     const newTodo: AddTodo = {
       title: title,
       status: false,
@@ -57,7 +57,7 @@ function TodoList() {
   const activeTodosCount = activeTodos.length;
 
   return (
-    <Container>
+    <Container data-testid="todo-list">
       <Header>TODOS</Header>
       <InputContainer>
         <input
