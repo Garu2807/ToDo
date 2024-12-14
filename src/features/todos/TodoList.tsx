@@ -29,7 +29,7 @@ function TodoList() {
 
   const handleAddTodo = (e: React.FormEvent) => {
     e.preventDefault();
-    // if (title.trim() === '') return; // Проверка на пустое значение
+    if (title.trim() === '') return;
     const newTodo: AddTodo = {
       title: title,
       status: false,
@@ -68,7 +68,9 @@ function TodoList() {
           placeholder="Что нужно сделать?"
           onKeyDown={handleKeyDown}
         />
-        <AddTodoBtn onClick={handleAddTodo}>Добавить</AddTodoBtn>
+        <AddTodoBtn onClick={handleAddTodo} data-testid="add-btn">
+          Добавить
+        </AddTodoBtn>
       </InputContainer>
       <List>
         {filteredTodos.map((todo) => (

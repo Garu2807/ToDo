@@ -29,11 +29,12 @@ function TodoItem({ todo }: TodoPropsType) {
   };
 
   return (
-    <Item $completed={todo.status}>
+    <Item $completed={todo.status} data-testid="todo-item">
       <input
         type="checkbox"
         checked={todo.status}
         onChange={handleStatusChange}
+        data-testid="input-checkbox"
       />
       {isEditing ? (
         <form onSubmit={handleTitleChange}>
@@ -48,7 +49,9 @@ function TodoItem({ todo }: TodoPropsType) {
       ) : (
         <p onClick={() => setIsEditing(true)}>{todo.title}</p>
       )}
-      <button onClick={() => handleRemove(todo.id)}>Удалить</button>
+      <button onClick={() => handleRemove(todo.id)} data-testid="remove-btn">
+        Удалить
+      </button>
     </Item>
   );
 }
