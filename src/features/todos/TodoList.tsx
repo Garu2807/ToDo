@@ -67,6 +67,7 @@ function TodoList() {
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Что нужно сделать?"
           onKeyDown={handleKeyDown}
+          data-testid="input-todo"
         />
         <AddTodoBtn onClick={handleAddTodo} data-testid="add-btn">
           Добавить

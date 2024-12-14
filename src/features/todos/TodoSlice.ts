@@ -3,7 +3,7 @@ import { RootState } from './store';
 import { v4 as uuidv4 } from 'uuid';
 import { TodoState } from './types/TodoState';
 
-const getInitialState = () => {
+export const getInitialState = () => {
   const State = localStorage.getItem('todosState');
   return State ? JSON.parse(State) : { todos: [] };
 };
