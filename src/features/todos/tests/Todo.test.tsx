@@ -7,14 +7,11 @@ import TodoList from '../TodoList';
 import TodoItem from '../TodoItem';
 import { Todo } from '../types/Todo';
 
-
 import { configureStore } from '@reduxjs/toolkit';
 import todosReducer, {
   addTodo,
-  removeTodo,
   changeTodoStatus,
   changeTodoTitle,
-  removeCompletedTodo,
   getInitialState,
 } from '../TodoSlice';
 import { TodoState } from '../types/TodoState';
@@ -45,7 +42,6 @@ const addTodoUI = (todoText: string) => {
   fireEvent.click(screen.getByRole('button', { name: /добавить/i }));
   return input;
 };
-
 
 describe('Компонент TodoList', () => {
   test('Компонент TodoList рендерится', () => {
