@@ -7,7 +7,7 @@ import TodoList from '../TodoList';
 import TodoItem from '../TodoItem';
 import { Todo } from '../types/Todo';
 
-// Импортируем редьюсер и действия для логических тестов
+
 import { configureStore } from '@reduxjs/toolkit';
 import todosReducer, {
   addTodo,
@@ -46,7 +46,7 @@ const addTodoUI = (todoText: string) => {
   return input;
 };
 
-// Тесты для компонентов
+
 describe('Компонент TodoList', () => {
   test('Компонент TodoList рендерится', () => {
     renderTodoList();
@@ -107,7 +107,6 @@ jest.mock('uuid', () => ({
   v4: jest.fn(() => '1234'),
 }));
 
-// Мокаем localStorage
 const localStorageMock = (() => {
   let store: Record<string, string> = {};
   return {
@@ -140,7 +139,6 @@ describe('Тестирование Redux', () => {
   });
 
   test('getInitialState возвращает корректное начальное состояние', () => {
-    // Устанавливаем начальное состояние в localStorage
     const initialState = {
       todos: [{ id: '1', title: 'Сохраненное дело', status: false }],
     };
