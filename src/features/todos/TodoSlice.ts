@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import { v4 as uuidv4 } from 'uuid';
 import { TodoState } from './types/TodoState';
+import { createSelector } from 'reselect';
 
 export const getInitialState = () => {
   const State = localStorage.getItem('todosState');
@@ -52,9 +53,16 @@ export const {
   removeCompletedTodo,
 } = todosSlice.actions;
 
-export const selectActiveTodos = (state: RootState) =>
-  state.todos.todos.filter((todo) => !todo.status);
-export const selectCompletedTodos = (state: RootState) =>
-  state.todos.todos.filter((todo) => todo.status);
+export const selectTodos = (state: RootState) => state.todos.todos;
+
+export const selectActiveTodos = createSelector(
+  [selectTodos],
+  (todos) => todos.filter((todo) => !todo.status)
+);
+
+export const selectCompletedTodos = createSelector(
+  [selectTodos],
+  (todos) => todos.filter((todo) => todo.status)
+);
 
 export default todosSlice.reducer;
