@@ -30,7 +30,9 @@ function TodoItem({ todo }: TodoPropsType) {
   };
 
   return (
+
     <Item $completed={todo.status} data-testid="todo-item">
+
       <input
         type="checkbox"
         checked={todo.status}
