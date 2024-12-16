@@ -14,8 +14,8 @@ import {
   List,
   Footer,
   Counter,
-  FilterButton,
   AddTodoBtn,
+  FilterButton,
 } from './Todo.styles';
 import { AddTodo } from './types/Todo';
 
@@ -82,25 +82,34 @@ function TodoList() {
         <Counter>Кол-во задач: {activeTodosCount}</Counter>
         <div>
           <FilterButton
-            isActive={filter === 'all'}
+            $isActive={filter === 'all'}
             onClick={() => setFilter('all')}
+            data-testid="all-btn"
           >
             Все
           </FilterButton>
           <FilterButton
-            isActive={filter === 'active'}
+            $isActive={filter === 'active'}
             onClick={() => setFilter('active')}
+            data-testid="active-btn"
           >
             Активные
           </FilterButton>
           <FilterButton
-            isActive={filter === 'completed'}
+            $isActive={filter === 'completed'}
             onClick={() => setFilter('completed')}
+            data-testid="completed-btn"
           >
             Завершенные
           </FilterButton>
+          <p data-testid="filter-status">Текущий фильтр: {filter}</p>
         </div>
-        <button onClick={handleRemoveCompleted}>Удалить завершенные</button>
+        <button
+          onClick={handleRemoveCompleted}
+          data-testid="remove-completed-btn"
+        >
+          Удалить завершенные
+        </button>
       </Footer>
     </Container>
   );

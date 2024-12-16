@@ -63,6 +63,41 @@ describe('Компонент TodoList', () => {
     const input = addTodoUI('Новое дело');
     expect(input).toHaveValue('');
   });
+  test('Проверяем что кнопка "Все" отображается и работает', () => {
+    renderTodoList();
+    expect(screen.getByTestId('all-btn')).toBeInTheDocument();
+    const allButton = screen.getByTestId('all-btn');
+    fireEvent.click(allButton);
+    expect(screen.getByTestId('filter-status')).toHaveTextContent(
+      'Текущий фильтр: all'
+    );
+  });
+  test('Проверяем что кнопка "Активные" отображается и работает', () => {
+    renderTodoList();
+    expect(screen.getByTestId('active-btn')).toBeInTheDocument();
+    const activeButton = screen.getByTestId('active-btn');
+    fireEvent.click(activeButton);
+    expect(screen.getByTestId('filter-status')).toHaveTextContent(
+      'Текущий фильтр: active'
+    );
+  });
+  test('Проверяем что кнопка "Завершенные" отображается и работает', () => {
+    renderTodoList();
+    expect(screen.getByTestId('completed-btn')).toBeInTheDocument();
+    const completedButton = screen.getByTestId('completed-btn');
+    fireEvent.click(completedButton);
+    expect(screen.getByTestId('filter-status')).toHaveTextContent(
+      'Текущий фильтр: completed'
+    );
+  });
+  test('Проверяем, что нажатие Enter вызывает handleAddTodo', () => {
+    renderTodoList();
+    const input = screen.getByTestId('input-todo');
+    fireEvent.change(input, { target: { value: 'Новое дело' } });
+    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+    const todoItems = screen.getAllByText(/новое дело/i);
+    expect(todoItems.length).toBeGreaterThan(0);
+  });
 });
 
 describe('Компонент TodoItem', () => {

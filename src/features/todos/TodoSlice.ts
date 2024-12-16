@@ -55,14 +55,12 @@ export const {
 
 export const selectTodos = (state: RootState) => state.todos.todos;
 
-export const selectActiveTodos = createSelector(
-  [selectTodos],
-  (todos) => todos.filter((todo) => !todo.status)
+export const selectActiveTodos = createSelector([selectTodos], (todos) =>
+  todos.filter((todo) => !todo.status)
 );
 
-export const selectCompletedTodos = createSelector(
-  [selectTodos],
-  (todos) => todos.filter((todo) => todo.status)
+export const selectCompletedTodos = createSelector([selectTodos], (todos) =>
+  todos.filter((todo) => todo.status)
 );
 
 export default todosSlice.reducer;

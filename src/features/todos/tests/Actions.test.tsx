@@ -40,20 +40,22 @@ const localStorageMock = (() => {
 Object.defineProperty(window, 'localStorage', { value: localStorageMock });
 
 describe('Тестирование Экшенов', () => {
-  let initialState: TodoState = getInitialState();
+  let initialState: TodoState;
 
-  const testStore = configureStore({
-    reducer: {
-      todos: todosReducer,
-    },
-    preloadedState: {
-      todos: initialState,
-    },
-  });
+  let testStore: EnhancedStore;
 
   beforeEach(() => {
     localStorage.clear();
     uuidCounter = 0; // Сбрасываем счетчик перед каждым тестом
+    initialState = getInitialState();
+    testStore = configureStore({
+      reducer: {
+        todos: todosReducer,
+      },
+      preloadedState: {
+        todos: initialState,
+      },
+    });
   });
 
   test('getInitialState возвращает корректное начальное состояние', () => {
@@ -65,7 +67,24 @@ describe('Тестирование Экшенов', () => {
     const state = getInitialState();
     expect(state).toEqual(initialState);
   });
+  test('нельзя добавить пустое дело', () => {
+    render(
+      <Provider store={testStore}>
+        <TodoList />
+      </Provider>
+    );
 
+    const input = screen.getByTestId('input-todo');
+    const addButton = screen.getByTestId('add-btn');
+
+    // Попытка добавить пустое дело
+    fireEvent.change(input, { target: { value: '' } });
+    fireEvent.click(addButton);
+
+    // Проверка, что дело не добавлено
+    const state = testStore.getState().todos;
+    expect(state.todos).toHaveLength(0);
+  });
   test('addTodo добавляет новое дело', () => {
     testStore.dispatch(addTodo({ title: 'Новое дело', status: false }));
     const state = testStore.getState().todos;
@@ -115,16 +134,16 @@ describe('Тестирование Экшенов', () => {
     expect(savedState.todos[0].title).toBe('Новый заголовок');
   });
 
-  // test('removeCompletedTodo удаляет все завершённые дела', () => {
-  //   testStore.dispatch(addTodo({ title: 'Дело 1', status: true }));
-  //   testStore.dispatch(addTodo({ title: 'Дело 2', status: false }));
-  //   testStore.dispatch(addTodo({ title: 'Дело 3', status: true }));
-  //   testStore.dispatch(removeCompletedTodo());
-  //   const stateAfter = testStore.getState().todos;
-  //   expect(stateAfter.todos).toHaveLength(1);
-  //   expect(stateAfter.todos[0].title).toBe('Дело 2');
-  //   const savedState = JSON.parse(localStorage.getItem('todosState') as string);
-  //   expect(savedState.todos).toHaveLength(1);
-  //   expect(savedState.todos[0].title).toBe('Дело 2');
-  // });
+  test('removeCompletedTodo удаляет все завершённые дела', () => {
+    testStore.dispatch(addTodo({ title: 'Дело 1', status: true }));
+    testStore.dispatch(addTodo({ title: 'Дело 2', status: false }));
+    testStore.dispatch(addTodo({ title: 'Дело 3', status: true }));
+    testStore.dispatch(removeCompletedTodo());
+    const stateAfter = testStore.getState().todos;
+    expect(stateAfter.todos).toHaveLength(1);
+    expect(stateAfter.todos[0].title).toBe('Дело 2');
+    const savedState = JSON.parse(localStorage.getItem('todosState') as string);
+    expect(savedState.todos).toHaveLength(1);
+    expect(savedState.todos[0].title).toBe('Дело 2');
+  });
 });

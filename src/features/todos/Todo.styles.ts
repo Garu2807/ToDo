@@ -1,12 +1,12 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Roboto', sans-serif;
   }
 `;
 
-export const Container = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,14 +19,14 @@ export const Container = styled.div`
   padding: 20px;
 `;
 
-export const Header = styled.h1`
+const Header = styled.h1`
   font-size: 2.5rem;
   font-weight: 300;
   color: black;
   margin: 0 0 20px 0;
 `;
 
-export const InputContainer = styled.div`
+const InputContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -39,30 +39,30 @@ export const InputContainer = styled.div`
     outline: none;
     box-sizing: border-box;
     margin-right: 10px;
-    width: 80%; /* Делаем поле ввода шире */
+    width: 80%;
   }
 `;
 
-export const AddTodoBtn = styled.button`
+const AddTodoBtn = styled.button`
   padding: 10px 20px;
   font-size: 1.2rem;
   border: none;
   border-radius: 4px;
-  background-color: #61dafb; /* Синий цвет кнопки */
+  background-color: #61dafb;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
   &:hover {
-    background-color: #21a1f1; /* Темно-синий цвет при наведении */
-    color: #fff; /* Изменяем цвет текста при наведении */
+    background-color: #21a1f1;
+    color: #fff;
   }
 `;
 
-export const List = styled.div`
+const List = styled.div`
   width: 100%;
 `;
 
-export const Footer = styled.div`
+const Footer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -72,40 +72,40 @@ export const Footer = styled.div`
   font-weight: 700;
 `;
 
-export const RemoveCompletedBtn = styled.button`
+const RemoveCompletedBtn = styled.button`
   background: none;
   border: none;
   font-size: 0.9rem;
-  color: #61dafb; /* Blue link color */
+  color: #61dafb;
   cursor: pointer;
   padding: 5px;
   transition: color 0.2s ease-in-out;
 
   &:hover {
-    color: blue; /* Darker blue on hover */
+    color: blue;
   }
 `;
 
-export const Counter = styled.span`
+const Counter = styled.span`
   font-size: 1rem;
   color: #333;
 `;
 
-export const FilterButton = styled.button<{ isActive: boolean }>`
-  background: none;
-  border: ${({ isActive }) => (isActive ? '2px solid #61dafb' : 'none')};
-  font-size: 0.9rem;
-  color: ${({ isActive }) => (isActive ? '#61dafb' : '#888')};
+const FilterButton = styled.button<{ $isActive: boolean }>`
+  background-color: ${({ $isActive }) => ($isActive ? 'blue' : 'gray')};
+  color: white;
+  border: none;
+  padding: 10px;
+  margin: 5px;
   cursor: pointer;
-  padding: 5px;
-  transition: color 0.2s ease-in-out, border 0.2s ease-in-out;
 
   &:hover {
-    color: #21a1f1; /* Darker blue on hover */
+    background-color: ${({ $isActive }) =>
+      $isActive ? 'darkblue' : 'darkgray'};
   }
 `;
 
-export const Item = styled.div<{ $completed: boolean }>`
+const Item = styled.div<{ $completed: boolean }>`
   display: flex;
   width: 100%;
   font-size: 1.2rem;
@@ -168,3 +168,15 @@ export const Item = styled.div<{ $completed: boolean }>`
     }
   }
 `;
+export {
+  Container,
+  Header,
+  InputContainer,
+  AddTodoBtn,
+  List,
+  Footer,
+  RemoveCompletedBtn,
+  Counter,
+  FilterButton,
+  Item,
+};

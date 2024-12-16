@@ -42,8 +42,9 @@ function TodoItem({ todo }: TodoPropsType) {
             value={title}
             type="text"
             onChange={(e) => setTitle(e.target.value)}
-            onBlur={() => setIsEditing(false)}
+            onBlur={handleTitleChange}
             autoFocus
+            data-testid="title-input"
           />
         </form>
       ) : (
