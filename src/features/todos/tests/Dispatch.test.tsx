@@ -1,3 +1,4 @@
+// @ts-ignore
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
@@ -12,7 +13,6 @@ import TodoItem from '../TodoItem';
 import { Todo } from '../types/Todo';
 import { useAppDispatch } from '../store';
 import { Dispatch } from 'redux';
-import TodoList from '../TodoList';
 
 // Мокаем useAppDispatch
 jest.mock('../store', () => ({
@@ -42,13 +42,7 @@ describe('Тестирование Dispatch', () => {
       </Provider>
     );
   };
-  const renderTodoList = () => {
-    render(
-      <Provider store={store}>
-        <TodoList />
-      </Provider>
-    );
-  };
+
   test('Проверяем, что все действия вызывают dispatch с правильными параметрами', () => {
     const todo = { id: '1', title: 'Тестовое дело', status: false };
     renderTodoItem(todo);

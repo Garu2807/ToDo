@@ -1,11 +1,9 @@
+// @ts-ignore
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import store, { RootState, useAppSelector } from '../store'; // ваш существующий store
+import { Provider } from 'react-redux'; // ваш существующий store
 import TodoList from '../TodoList';
-import TodoItem from '../TodoItem';
-import { Todo } from '../types/Todo';
 
 import { configureStore, EnhancedStore } from '@reduxjs/toolkit';
 import todosReducer, {

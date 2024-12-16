@@ -1,3 +1,4 @@
+// @ts-ignore
 import React from 'react';
 import '@testing-library/jest-dom';
 import { configureStore, EnhancedStore } from '@reduxjs/toolkit';

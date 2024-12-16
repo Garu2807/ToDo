@@ -3,7 +3,6 @@ import { TodoPropsType } from './types/Todo';
 import { useAppDispatch } from './store';
 import { changeTodoStatus, changeTodoTitle, removeTodo } from './TodoSlice';
 import { DeleteButton, Item } from './Todo.styles';
-import { RxCrossCircled } from 'react-icons/rx';
 
 function TodoItem({ todo }: TodoPropsType) {
   const dispatch = useAppDispatch();
@@ -30,9 +29,7 @@ function TodoItem({ todo }: TodoPropsType) {
   };
 
   return (
-
     <Item $completed={todo.status} data-testid="todo-item">
-
       <input
         type="checkbox"
         checked={todo.status}
