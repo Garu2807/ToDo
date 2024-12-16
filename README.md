@@ -26,7 +26,7 @@
 - Деплой на GitHub pages (URL: https://garu2807.github.io/ToDo/)
 - Приятная верстка
 
-## Установка
+### Установка
 
 1. Установите зависимости: npm install
 2. Запуск приложения: npm run start
