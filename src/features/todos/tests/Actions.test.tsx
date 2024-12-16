@@ -79,7 +79,7 @@ describe('Тестирование Экшенов', () => {
     fireEvent.change(input, { target: { value: '' } });
     fireEvent.click(addButton);
 
-    // Проверка, что дело не добавлено
+    // Проверка, что дело не добавлен
     const state = testStore.getState().todos;
     expect(state.todos).toHaveLength(0);
   });
