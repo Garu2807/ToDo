@@ -27,7 +27,7 @@ describe('Тестирование селекторов', () => {
     uuidCounter = 0;
   });
 
-  test('selectTodos возвращает все дела', () => {
+  test('selectTodos возвращает все  дела', () => {
     store.dispatch(addTodo({ title: 'Дело 1', status: false }));
     store.dispatch(addTodo({ title: 'Дело 2', status: true }));
     store.dispatch(addTodo({ title: 'Дело 3', status: false }));
