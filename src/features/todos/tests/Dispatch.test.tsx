@@ -46,8 +46,6 @@ describe('Тестирование Dispatch', () => {
   test('Проверяем, что все действия вызывают dispatch с правильными параметрами', () => {
     const todo = { id: '1', title: 'Тестовое дело', status: false };
     renderTodoItem(todo);
-
-    // Проверка удаления
     const removeButton = screen.getByTestId('remove-btn');
     fireEvent.click(removeButton);
     expect(dispatchMock).toHaveBeenCalledWith(removeTodo({ id: todo.id }));
