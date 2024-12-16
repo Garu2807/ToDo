@@ -6,6 +6,9 @@ export const GlobalStyle = createGlobalStyle`
 `;
 export const StyledApp = styled.div`
   display: flex;
-  justify-content: space-around;
-  padding-top: 300px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  background-color: #f0f2f5;
 `;

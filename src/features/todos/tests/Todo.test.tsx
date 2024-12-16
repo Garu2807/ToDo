@@ -68,27 +68,26 @@ describe('Компонент TodoList', () => {
     expect(screen.getByTestId('all-btn')).toBeInTheDocument();
     const allButton = screen.getByTestId('all-btn');
     fireEvent.click(allButton);
-    expect(screen.getByTestId('filter-status')).toHaveTextContent(
-      'Текущий фильтр: all'
-    );
+    // Проверка, что фильтр изменился на "all"
+    expect(allButton).toHaveAttribute('data-active', 'true');
   });
+
   test('Проверяем что кнопка "Активные" отображается и работает', () => {
     renderTodoList();
     expect(screen.getByTestId('active-btn')).toBeInTheDocument();
     const activeButton = screen.getByTestId('active-btn');
     fireEvent.click(activeButton);
-    expect(screen.getByTestId('filter-status')).toHaveTextContent(
-      'Текущий фильтр: active'
-    );
+    // Проверка, что фильтр изменился на "active"
+    expect(activeButton).toHaveAttribute('data-active', 'true');
   });
+
   test('Проверяем что кнопка "Завершенные" отображается и работает', () => {
     renderTodoList();
     expect(screen.getByTestId('completed-btn')).toBeInTheDocument();
     const completedButton = screen.getByTestId('completed-btn');
     fireEvent.click(completedButton);
-    expect(screen.getByTestId('filter-status')).toHaveTextContent(
-      'Текущий фильтр: completed'
-    );
+    // Проверка, что фильтр изменился на "completed"
+    expect(completedButton).toHaveAttribute('data-active', 'true');
   });
   test('Проверяем, что нажатие Enter вызывает handleAddTodo', () => {
     renderTodoList();
