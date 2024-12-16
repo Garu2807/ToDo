@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { TodoPropsType } from './types/Todo';
 import { useAppDispatch } from './store';
 import { changeTodoStatus, changeTodoTitle, removeTodo } from './TodoSlice';
-import { Item } from './Todo.styles';
+import { DeleteButton, Item } from './Todo.styles';
+import { RxCrossCircled } from 'react-icons/rx';
 
 function TodoItem({ todo }: TodoPropsType) {
   const dispatch = useAppDispatch();
@@ -29,11 +30,14 @@ function TodoItem({ todo }: TodoPropsType) {
   };
 
   return (
-    <Item $completed={todo.status}>
+
+    <Item $completed={todo.status} data-testid="todo-item">
+
       <input
         type="checkbox"
         checked={todo.status}
         onChange={handleStatusChange}
+        data-testid="input-checkbox"
       />
       {isEditing ? (
         <form onSubmit={handleTitleChange}>
@@ -41,14 +45,18 @@ function TodoItem({ todo }: TodoPropsType) {
             value={title}
             type="text"
             onChange={(e) => setTitle(e.target.value)}
-            onBlur={() => setIsEditing(false)}
+            onBlur={handleTitleChange}
             autoFocus
+            data-testid="title-input"
           />
         </form>
       ) : (
         <p onClick={() => setIsEditing(true)}>{todo.title}</p>
       )}
-      <button onClick={() => handleRemove(todo.id)}>Удалить</button>
+      <DeleteButton
+        onClick={() => handleRemove(todo.id)}
+        data-testid="remove-btn"
+      ></DeleteButton>
     </Item>
   );
 }

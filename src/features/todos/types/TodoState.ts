@@ -1,6 +1,6 @@
-import { Todo } from "./Todo";
+import { Todo } from './Todo';
 
 export type TodoState = {
   todos: Todo[];
-  error: string | undefined;
+  error?: string | undefined;
 };

@@ -1,16 +1,24 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import { RxCrossCircled } from 'react-icons/rx';
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
   }
 `;
 
-export const Container = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f8f8f8;
+  background-color: #ffffff;
   max-width: 600px;
   width: 100%;
   margin: 20px auto;
@@ -19,17 +27,18 @@ export const Container = styled.div`
   padding: 20px;
 `;
 
-export const Header = styled.h1`
+const Header = styled.h1`
   font-size: 2.5rem;
   font-weight: 300;
-  color: black;
+  color: #333;
   margin: 0 0 20px 0;
 `;
 
-export const InputContainer = styled.div`
+const InputContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
   input {
     flex: 1;
     padding: 10px;
@@ -39,29 +48,30 @@ export const InputContainer = styled.div`
     outline: none;
     box-sizing: border-box;
     margin-right: 10px;
-    width: 80%; /* Делаем поле ввода шире */
-  }
-  button {
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 4px;
-    background-color: #61dafb; /* Синий цвет кнопки */
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    &:hover {
-      background-color: #21a1f1; /* Темно-синий цвет при наведении */
-      color: #fff; /* Изменяем цвет текста при наведении */
-    }
+    width: 80%;
   }
 `;
 
-export const List = styled.div`
+const AddTodoBtn = styled.button`
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  &:hover {
+    background-color: #0056b3;
+    color: #fff;
+  }
+`;
+
+const List = styled.div`
   width: 100%;
 `;
 
-export const Footer = styled.div`
+const Footer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -69,42 +79,44 @@ export const Footer = styled.div`
   font-size: 0.9rem;
   color: #888;
   font-weight: 700;
+  margin-top: 20px;
+`;
 
-  button {
-    background: none;
-    border: none;
-    font-size: 0.9rem;
-    color: #61dafb; /* Blue link color */
-    cursor: pointer;
-    padding: 5px;
-    transition: color 0.2s ease-in-out;
+const RemoveCompletedBtn = styled.button`
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  color: #007bff;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.2s ease-in-out;
 
-    &:hover {
-      color: blue; /* Darker blue on hover */
-    }
+  &:hover {
+    color: #0056b3;
   }
 `;
 
-export const Counter = styled.span`
+const Counter = styled.span`
   font-size: 1rem;
   color: #333;
 `;
 
-export const FilterButton = styled.button<{ isActive: boolean }>`
-  background: none;
-  border: ${({ isActive }) => (isActive ? '2px solid #61dafb' : 'none')};
-  font-size: 0.9rem;
-  color: ${({ isActive }) => (isActive ? '#61dafb' : '#888')};
+const FilterButton = styled.button<{ $isActive: boolean }>`
+  background-color: ${({ $isActive }) => ($isActive ? '#007bff' : '#e0e0e0')};
+  color: ${({ $isActive }) => ($isActive ? 'white' : '#333')};
+  border: none;
+  padding: 10px;
+  margin: 5px;
   cursor: pointer;
-  padding: 5px;
-  transition: color 0.2s ease-in-out, border 0.2s ease-in-out;
+  border-radius: 4px;
+  transition: background-color 0.3s;
 
   &:hover {
-    color: #21a1f1; /* Darker blue on hover */
+    background-color: ${({ $isActive }) => ($isActive ? '#0056b3' : '#c0c0c0')};
   }
 `;
 
-export const Item = styled.div<{ $completed: boolean }>`
+const Item = styled.div<{ $completed: boolean }>`
   display: flex;
   width: 100%;
   font-size: 1.2rem;
@@ -116,6 +128,8 @@ export const Item = styled.div<{ $completed: boolean }>`
   display: flex;
   align-items: center;
   height: 80px;
+  margin-bottom: 10px;
+  border-radius: 4px;
   input[type='checkbox'] {
     width: 30px;
     height: 30px;
@@ -123,7 +137,7 @@ export const Item = styled.div<{ $completed: boolean }>`
     cursor: pointer;
     appearance: none;
     border: 2px solid grey;
-    border-radius: 50%; 
+    border-radius: 50%;
     position: relative;
     outline: none;
     transition: border-color 0.3s, background-color 0.3s;
@@ -142,7 +156,7 @@ export const Item = styled.div<{ $completed: boolean }>`
       border: solid #13ff18;
       border-width: 0 2px 2px 0;
       transform: translate(-50%, -50%) rotate(45deg);
-      transform-origin: center; 
+      transform-origin: center;
     }
   }
 
@@ -167,3 +181,37 @@ export const Item = styled.div<{ $completed: boolean }>`
     }
   }
 `;
+
+const DeleteButton = styled(RxCrossCircled)`
+  background-color: transparent;
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  color: #ff6b6b;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s, transform 0.3s;
+
+  &:hover {
+    background-color: #ff6b6b;
+    color: white;
+    transform: scale(1.2);
+  }
+`;
+export {
+  GlobalStyle,
+  Container,
+  Header,
+  InputContainer,
+  AddTodoBtn,
+  List,
+  Footer,
+  RemoveCompletedBtn,
+  Counter,
+  FilterButton,
+  Item,
+  DeleteButton,
+};
