@@ -48,7 +48,7 @@ function TodoItem({ todo }: TodoPropsType) {
           />
         </form>
       ) : (
-        <p onClick={() => setIsEditing(true)}>{todo.title}</p>
+        // <p onClick={() => setIsEditing(true)}>{todo.title}</p>
       )}
       <DeleteButton
         onClick={() => handleRemove(todo.id)}
