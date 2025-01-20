@@ -64,7 +64,7 @@ function TodoList() {
       <GlobalStyle />
       <Container data-testid="todo-list">
         <Header>TODOS</Header>
-        <InputContainer>
+        <InputContainer onSubmit={handleAddTodo}>
           <input
             type="text"
             value={title}
@@ -73,9 +73,9 @@ function TodoList() {
             onKeyDown={handleKeyDown}
             data-testid="input-todo"
           />
-          <AddTodoBtn onClick={handleAddTodo} data-testid="add-btn">
+          <button type="submit" data-testid="add-btn">
             Добавить
-          </AddTodoBtn>
+          </button>
         </InputContainer>
         <List>
           {filteredTodos.map((todo) => (

@@ -18,52 +18,77 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ffffff;
+  background-color: #f5f5f5;
   max-width: 600px;
   width: 100%;
   margin: 20px auto;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  position: relative;
+  overflow: hidden;
 `;
 
 const Header = styled.h1`
   font-size: 2.5rem;
   font-weight: 300;
-  color: #333;
+  color: #e6d9d8;
   margin: 0 0 20px 0;
 `;
 
-const InputContainer = styled.div`
+const InputContainer = styled.form`
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  align-items: center;
+  height: 50px;
+  position: relative;
+
   input {
     flex: 1;
+    height: 60px;
     padding: 10px;
     font-size: 1.2rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: none;
+    border-bottom: 1px solid #ccc;
     outline: none;
     box-sizing: border-box;
-    margin-right: 10px;
-    width: 80%;
+    width: 100%;
+    padding-right: 80px;
+  }
+
+  button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px 20px;
+    font-size: 0.7rem;
+    border: none;
+    background: none;
+    color: #797979;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s, border 0.3s, opacity 0.3s;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+    }
   }
 `;
 
 const AddTodoBtn = styled.button`
-  padding: 10px 20px;
-  font-size: 1.2rem;
+  background: none;
   border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: white;
+  height: 40px;
+  font-size: 0.7rem;
+  color: #797979;
   cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  transition: transform 0.3s, background-color 0.3s, border 0.3s, opacity 0.3s;
+
   &:hover {
-    background-color: #0056b3;
-    color: #fff;
+    transform: scale(1.1);
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
   }
 `;
 
@@ -71,48 +96,54 @@ const List = styled.div`
   width: 100%;
 `;
 
-const Footer = styled.div`
-  width: 100%;
+const Footer = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.9rem;
+  font-size: 0.6rem;
   color: #888;
   font-weight: 700;
-  margin-top: 20px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  height: 25px;
 `;
 
 const RemoveCompletedBtn = styled.button`
   background: none;
   border: none;
-  font-size: 0.9rem;
-  color: #007bff;
+  font-size: 0.7rem;
+  color: #797979;
   cursor: pointer;
   padding: 5px;
-  transition: color 0.2s ease-in-out;
+  transition: transform 0.3s, background-color 0.3s, border 0.3s, opacity 0.3s;
 
   &:hover {
-    color: #0056b3;
+    transform: scale(1.1);
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
   }
 `;
 
 const Counter = styled.span`
-  font-size: 1rem;
-  color: #333;
+  font-size: 0.7rem;
+  color: #797979;
 `;
 
 const FilterButton = styled.button<{ $isActive: boolean }>`
-  background-color: ${({ $isActive }) => ($isActive ? '#007bff' : '#e0e0e0')};
-  color: ${({ $isActive }) => ($isActive ? 'white' : '#333')};
-  border: none;
+  border: ${({ $isActive }) => ($isActive ? '1px solid #e6d9d8' : 'none')};
+  background-color: transparent;
   padding: 10px;
+  color: #797979;
+  font-size: 0.7rem;
   margin: 5px;
   cursor: pointer;
   border-radius: 4px;
-  transition: background-color 0.3s;
+  transition: transform 0.3s, background-color 0.3s, border 0.3s, opacity 0.3s;
 
   &:hover {
-    background-color: ${({ $isActive }) => ($isActive ? '#0056b3' : '#c0c0c0')};
+    transform: scale(1.1);
+    background-color: rgba(0, 0, 0, 0.1);
   }
 `;
 
@@ -121,15 +152,15 @@ const Item = styled.div<{ $completed: boolean }>`
   width: 100%;
   font-size: 1.2rem;
   flex-direction: row;
-  border: 1px solid #ccc;
-  padding: 20px;
+  border-bottom: 1px solid #ccc;
+  padding-left: 20px;
+  padding-right: 40px;
   box-sizing: border-box;
   background-color: ${({ $completed }) => ($completed ? '#e0e0e0' : '#fff')};
   display: flex;
   align-items: center;
-  height: 80px;
-  margin-bottom: 10px;
-  border-radius: 4px;
+  height: 60px;
+
   input[type='checkbox'] {
     width: 30px;
     height: 30px;
@@ -201,6 +232,7 @@ const DeleteButton = styled(RxCrossCircled)`
     transform: scale(1.2);
   }
 `;
+
 export {
   GlobalStyle,
   Container,
