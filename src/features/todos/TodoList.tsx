@@ -18,6 +18,7 @@ import {
   AddTodoBtn,
   FilterButton,
   RemoveCompletedBtn,
+  Arrow,
 } from './Todo.styles';
 import { AddTodo } from './types/Todo';
 
@@ -65,6 +66,7 @@ function TodoList() {
       <Container data-testid="todo-list">
         <Header>TODOS</Header>
         <InputContainer onSubmit={handleAddTodo}>
+          <Arrow />
           <input
             type="text"
             value={title}
@@ -84,32 +86,32 @@ function TodoList() {
         </List>
         <Footer>
           <Counter>Кол-во задач: {activeTodosCount}</Counter>
-          <div>
-            <FilterButton
-              $isActive={filter === 'all'}
-              onClick={() => setFilter('all')}
-              data-active={filter === 'all' ? 'true' : 'false'}
-              data-testid="all-btn"
-            >
-              Все
-            </FilterButton>
-            <FilterButton
-              $isActive={filter === 'active'}
-              onClick={() => setFilter('active')}
-              data-active={filter === 'active' ? 'true' : 'false'}
-              data-testid="active-btn"
-            >
-              Активные
-            </FilterButton>
-            <FilterButton
-              $isActive={filter === 'completed'}
-              onClick={() => setFilter('completed')}
-              data-active={filter === 'completed' ? 'true' : 'false'}
-              data-testid="completed-btn"
-            >
-              Завершенные
-            </FilterButton>
-          </div>
+
+          <FilterButton
+            $isActive={filter === 'all'}
+            onClick={() => setFilter('all')}
+            data-active={filter === 'all' ? 'true' : 'false'}
+            data-testid="all-btn"
+          >
+            Все
+          </FilterButton>
+          <FilterButton
+            $isActive={filter === 'active'}
+            onClick={() => setFilter('active')}
+            data-active={filter === 'active' ? 'true' : 'false'}
+            data-testid="active-btn"
+          >
+            Активные
+          </FilterButton>
+          <FilterButton
+            $isActive={filter === 'completed'}
+            onClick={() => setFilter('completed')}
+            data-active={filter === 'completed' ? 'true' : 'false'}
+            data-testid="completed-btn"
+          >
+            Завершенные
+          </FilterButton>
+
           <RemoveCompletedBtn
             onClick={handleRemoveCompleted}
             data-testid="remove-completed-btn"

@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import { RxCrossCircled } from 'react-icons/rx';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -41,20 +42,18 @@ const InputContainer = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
+  height: 60px;
   position: relative;
 
   input {
     flex: 1;
-    height: 60px;
-    padding: 10px;
+    height: 100%;
     font-size: 1.2rem;
     border: none;
     border-bottom: 1px solid #ccc;
     outline: none;
     box-sizing: border-box;
-    width: 100%;
-    padding-right: 80px;
+    padding-left: 73px;
   }
 
   button {
@@ -69,6 +68,9 @@ const InputContainer = styled.form`
     color: #797979;
     cursor: pointer;
     transition: transform 0.3s, background-color 0.3s, border 0.3s, opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &:hover {
       background-color: rgba(0, 0, 0, 0.1);
       border-radius: 4px;
@@ -76,20 +78,15 @@ const InputContainer = styled.form`
   }
 `;
 
-const AddTodoBtn = styled.button`
-  background: none;
-  border: none;
-  height: 40px;
-  font-size: 0.7rem;
-  color: #797979;
-  cursor: pointer;
-  transition: transform 0.3s, background-color 0.3s, border 0.3s, opacity 0.3s;
-
-  &:hover {
-    transform: scale(1.1);
-    background-color: rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-  }
+const Arrow = styled(MdKeyboardArrowDown)`
+  position: absolute;
+  left: 10px; /* Располагаем стрелочку слева от поля ввода */
+  top: 50%;
+  transform: translateY(-50%);
+  color: grey;
+  height: 30px;
+  width: 30px;
+  margin-left: 13px;
 `;
 
 const List = styled.div`
@@ -107,6 +104,10 @@ const Footer = styled.footer`
   border-bottom: 1px solid #ccc;
   padding: 10px;
   height: 25px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15), 0 10px 0 -5px #eee,
+    0 10px 1px -4px rgba(0, 0, 0, 0.15), 0 20px 0 -10px #eee,
+    0 20px 1px -9px rgba(0, 0, 0, 0.15);
+  padding: 10px;
 `;
 
 const RemoveCompletedBtn = styled.button`
@@ -238,6 +239,7 @@ export {
   Container,
   Header,
   InputContainer,
+  Arrow,
   AddTodoBtn,
   List,
   Footer,
