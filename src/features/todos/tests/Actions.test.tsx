@@ -57,7 +57,7 @@ describe('Тестирование Экшенов', () => {
   });
 
   test('getInitialState возвращает корректное начальное состояние', () => {
-    // Устанавливаем начальное состояние в localStorage
+     //Устанавливаем начальное состояние в localStorage
     const initialState = {
       todos: [{ id: '1', title: 'Сохраненное дело', status: false }],
     };
