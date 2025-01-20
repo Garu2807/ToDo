@@ -59,7 +59,7 @@ const InputContainer = styled.form`
   button {
     position: absolute;
     right: 10px;
-    top: 15px;
+    top: 30px;
     margin-top: -20px;
     padding: 10px 20px;
     font-size: 0.7rem;
