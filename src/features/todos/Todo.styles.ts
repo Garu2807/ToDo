@@ -59,19 +59,22 @@ const InputContainer = styled.form`
   button {
     position: absolute;
     right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 15px;
+    margin-top: -20px;
     padding: 10px 20px;
     font-size: 0.7rem;
     border: none;
     background: none;
     color: #797979;
     cursor: pointer;
-    transition: transform 0.3s, background-color 0.3s, border 0.3s, opacity 0.3s;
+    transition: transform 0.3s ease, background-color 0.3s ease,
+      border 0.3s ease, opacity 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    transform-origin: center; /* Устанавливаем точку масштабирования в центр */
     &:hover {
+      transform: scale(1.05); /* Увеличиваем кнопку при наведении */
       background-color: rgba(0, 0, 0, 0.1);
       border-radius: 4px;
     }
@@ -115,8 +118,9 @@ const RemoveCompletedBtn = styled.button`
   border: none;
   font-size: 0.7rem;
   color: #797979;
+  height: 30px;
   cursor: pointer;
-  padding: 5px;
+  margin-left: 4px;
   transition: transform 0.3s, background-color 0.3s, border 0.3s, opacity 0.3s;
 
   &:hover {
@@ -132,7 +136,8 @@ const Counter = styled.span`
 `;
 
 const FilterButton = styled.button<{ $isActive: boolean }>`
-  border: ${({ $isActive }) => ($isActive ? '1px solid #e6d9d8' : 'none')};
+  border: 1.5px solid
+    ${({ $isActive }) => ($isActive ? '#e6d9d8' : 'transparent')};
   background-color: transparent;
   padding: 10px;
   color: #797979;
@@ -140,10 +145,12 @@ const FilterButton = styled.button<{ $isActive: boolean }>`
   margin: 5px;
   cursor: pointer;
   border-radius: 4px;
-  transition: transform 0.3s, background-color 0.3s, border 0.3s, opacity 0.3s;
+  transition: transform 0.3s ease, background-color 0.3s ease,
+    border-color 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     background-color: rgba(0, 0, 0, 0.1);
   }
 `;
@@ -240,7 +247,6 @@ export {
   Header,
   InputContainer,
   Arrow,
-  AddTodoBtn,
   List,
   Footer,
   RemoveCompletedBtn,
