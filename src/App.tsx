@@ -1,3 +1,4 @@
+import React from 'react';
 import { StyledApp } from './App.styles';
 import TodoList from './features/todos/TodoList';
 

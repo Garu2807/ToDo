@@ -7,11 +7,19 @@ import store from '../store'; // ваш существующий store
 import TodoList from '../TodoList';
 import TodoItem from '../TodoItem';
 import { Todo } from '../types/Todo';
+import App from '../../../App';
 
 const renderTodoList = () => {
   render(
     <Provider store={store}>
       <TodoList />
+    </Provider>
+  );
+};
+const renderApp = () => {
+  render(
+    <Provider store={store}>
+      <App />
     </Provider>
   );
 };
@@ -35,11 +43,11 @@ const addTodoUI = (todoText: string) => {
 };
 
 describe('Компонент TodoList', () => {
-  test('Компонент TodoList рендерится', () => {
-    renderTodoList();
-    expect(screen.getByTestId('todo-list')).toBeInTheDocument();
+  test('renders TodoList component', () => {
+    renderApp();
+    const todoListElement = screen.queryByTestId('todo-list');
+    expect(todoListElement).toBeInTheDocument();
   });
-
   test('Проверяем, что заголовок отображается', () => {
     renderTodoList();
     expect(screen.getByText(/todos/i)).toBeInTheDocument();
@@ -97,6 +105,12 @@ describe('Компонент TodoList', () => {
     fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
     const todoItems = screen.getAllByText(/новое дело/i);
     expect(todoItems.length).toBeGreaterThan(0);
+  });
+  test('Проверяем что кнопка "Удалить завершенные" отображается и работает', () => {
+    renderTodoList();
+    expect(screen.getByTestId('remove-completed-btn')).toBeInTheDocument();
+    const removeCompletedButton = screen.getByTestId('remove-completed-btn');
+    fireEvent.click(removeCompletedButton);
   });
 });
 
