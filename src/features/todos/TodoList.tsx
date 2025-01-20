@@ -15,7 +15,6 @@ import {
   List,
   Footer,
   Counter,
-  AddTodoBtn,
   FilterButton,
   RemoveCompletedBtn,
   Arrow,
